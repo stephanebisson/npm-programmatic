@@ -3,7 +3,7 @@ var npm = require("../../index");
 describe("Test listing of installed packages", ()=>{
 	it("should list all installed packages by npm-programmatic", function(done){
 		this.timeout(5000);
-		npm.list('.')
+		npm.list('.', 0)
 		.then(function(packages){
 			for(var i in packages){
 				if(packages[i].indexOf('bluebird')!=-1){

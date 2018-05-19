@@ -63,10 +63,12 @@ module.exports = {
 		});
 	},
 
-	list:function(path){
+	list:function(path, depth){
 		var global = false;
 		if(!path) global = true;
-		var cmdString = "npm ls --depth=0 " + (global?"-g ":" ");
+		var cmdString = "npm ls" +
+			(!isNaN(depth) ? " --depth=" + depth : "") +
+			(global ? " -g " : "");
 		return new Promise(function(resolve, reject){
 			exec(cmdString, {cwd: path?path:"/"},(error, stdout, stderr) => {
 				if(stderr == ""){
